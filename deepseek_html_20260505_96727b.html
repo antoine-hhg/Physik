@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektrische Energie & Licht und Atome – Mega-Hefteintrag</title>
+    <style>
+        :root {
+            --bg: #fafaf8;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --border: #e0e0dc;
+            --accent: #2c5f8a;
+            --accent-light: #e8f0f6;
+            --table-stripe: #f5f5f2;
+            --table-header: #2c5f8a;
+            --table-header-text: #ffffff;
+            --code-bg: #f3f3ef;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --toggle-bg: #e8e8e3;
+            --toggle-dot: #ffffff;
+            --toggle-icon: #555;
+            --hr: #d8d8d3;
+            --box-bg: #f8f8f5;
+            --box-border: #e6e6e0;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1a1a1e;
+            --surface: #232328;
+            --text: #e0e0dc;
+            --text-secondary: #b0b0aa;
+            --border: #38383c;
+            --accent: #6ba3d6;
+            --accent-light: #1e2d3a;
+            --table-stripe: #2a2a2f;
+            --table-header: #3a5f7a;
+            --table-header-text: #e8e8e4;
+            --code-bg: #2a2a2f;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.35);
+            --toggle-bg: #3a3a40;
+            --toggle-dot: #e0e0dc;
+            --toggle-icon: #ccc;
+            --hr: #3a3a3e;
+            --box-bg: #2a2a2f;
+            --box-border: #38383c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', 'STIX Two Text', 'DejaVu Serif', serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background-color 0.35s ease, color 0.35s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── Toggle Button ─────────────────────── */
+        .toggle-wrapper {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+        }
+
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--toggle-bg);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            padding: 0.5rem 0.9rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .toggle-btn:hover {
+            box-shadow: var(--shadow-lg);
+            color: var(--text);
+        }
+        .toggle-btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .toggle-icon {
+            font-size: 1.1rem;
+            transition: transform 0.35s ease;
+        }
+        [data-theme="dark"] .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .toggle-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Layout ───────────────────────────── */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 5rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid var(--hr);
+            margin-bottom: 2.5rem;
+        }
+        header h1 {
+            font-size: 1.9rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+        header .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* ── Typography ───────────────────────── */
+        h2 {
+            font-size: 1.45rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin: 2.8rem 0 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--hr);
+            letter-spacing: 0.01em;
+        }
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--text);
+            margin: 1.6rem 0 0.6rem;
+            letter-spacing: 0.01em;
+        }
+        p {
+            margin: 0.7rem 0;
+            color: var(--text-secondary);
+        }
+        strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ── Formula blocks ──────────────────── */
+        .formula {
+            display: block;
+            text-align: center;
+            font-size: 1.15rem;
+            padding: 0.7rem 1rem;
+            margin: 1rem 0;
+            background: var(--code-bg);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            font-family: 'Georgia', 'Times New Roman', 'STIX Two Text', serif;
+            letter-spacing: 0.02em;
+            color: var(--text);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        /* ── Boxed content ───────────────────── */
+        .info-box {
+            background: var(--box-bg);
+            border: 1px solid var(--box-border);
+            border-radius: 8px;
+            padding: 1.2rem 1.4rem;
+            margin: 1.2rem 0;
+        }
+        .info-box p {
+            margin: 0.3rem 0;
+        }
+
+        /* ── Tables ──────────────────────────── */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.2rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 500px;
+        }
+        thead th {
+            background: var(--table-header);
+            color: var(--table-header-text);
+            font-weight: 400;
+            padding: 0.7rem 1rem;
+            text-align: left;
+            letter-spacing: 0.02em;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        tbody td {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        tbody tr:nth-child(even) {
+            background: var(--table-stripe);
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        tbody td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        /* ── Lists ───────────────────────────── */
+        ul,
+        ol {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+            color: var(--text-secondary);
+        }
+        li {
+            margin: 0.25rem 0;
+        }
+
+        /* ── Horizontal rule ─────────────────── */
+        hr {
+            border: none;
+            border-top: 1px solid var(--hr);
+            margin: 2rem 0;
+        }
+
+        /* ── Responsive ──────────────────────── */
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1rem 3rem;
+            }
+            header h1 {
+                font-size: 1.4rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .formula {
+                font-size: 0.95rem;
+                padding: 0.5rem 0.8rem;
+            }
+            .toggle-wrapper {
+                top: 0.8rem;
+                right: 0.8rem;
+            }
+            .toggle-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
+            }
+            table {
+                font-size: 0.78rem;
+            }
+            thead th,
+            tbody td {
+                padding: 0.45rem 0.6rem;
+            }
+        }
+
+        @media print {
+            .toggle-wrapper {
+                display: none;
+            }
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .formula {
+                background: #f9f9f9;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── Dark/Light Toggle ─────────────────── -->
+    <div class="toggle-wrapper">
+        <button class="toggle-btn" id="themeToggle" aria-label="Dark/Light Modus umschalten" title="Dark / Light Modus">
+            <span class="toggle-icon" id="toggleIcon">☀️</span>
+            <span class="toggle-label" id="toggleLabel">Light</span>
+        </button>
+    </div>
+
+    <!-- ─── Main Content ──────────────────────── -->
+    <div class="container">
+
+        <header>
+            <h1>Elektrische Energie &amp; Licht und Atome</h1>
+            <p class="subtitle">Mega-Hefteintrag – Vollständige, tiefgehende Erklärung aller Inhalte<br>aus Kapitel 2 &amp; 3 des Lehrbuchs</p>
+        </header>
+
+        <!-- ===== 1 ===== -->
+        <h2>1&ensp;Elektrische Grundlagen</h2>
+
+        <h3>1.1&ensp;Atombau und elektrische Ladung</h3>
+        <p>Atome bestehen aus einem <strong>Kern</strong> (positiv geladene <strong>Protonen</strong>, neutrale <strong>Neutronen</strong>) und einer <strong>Hülle</strong> (negativ geladene <strong>Elektronen</strong>). Gleichnamige Ladungen stoßen sich ab, ungleichnamige ziehen sich an. Die <strong>elektrische Ladung</strong> <em>Q</em> gibt an, wie viel „Ladungsmenge“ ein Körper trägt.</p>
+        <span class="formula">[Q] = 1&#8239;Coulomb = 1&#8239;C</span>
+        <p>Die kleinste frei vorkommende Ladung ist die <strong>Elementarladung</strong> <em>e</em>. Jede Ladung ist ein ganzzahliges Vielfaches davon: <em>Q = N · e</em>. Millikan wies 1910 nach, dass Ladung nur in solchen Portionen auftritt.</p>
+        <span class="formula">e = 1,6022 · 10<sup>−19</sup>&#8239;C</span>
+
+        <h3>1.2&ensp;Elektrische Stromstärke I</h3>
+        <p>Die Stromstärke ist ein Maß dafür, wie viel Ladung pro Zeit durch einen Leiterquerschnitt fließt:</p>
+        <span class="formula">I = ΔQ / Δt &emsp; [I] = 1&#8239;Ampere = 1&#8239;A = 1&#8239;C/s</span>
+        <ul>
+            <li>Im <strong>unverzweigten Stromkreis</strong> ist die Stromstärke überall gleich.</li>
+            <li>In <strong>Parallelschaltungen</strong> addieren sich die Zweigströme: <em>I<sub>ges</sub> = I₁ + I₂ + …</em></li>
+            <li>Gemessen wird mit einem <strong>Amperemeter</strong>, das <strong>in Reihe</strong> geschaltet wird.</li>
+        </ul>
+
+        <h3>1.3&ensp;Elektrische Spannung U</h3>
+        <p>Die Spannung ist der „Antrieb“ des elektrischen Stroms; sie gibt an, wie viel Energie pro Ladung von der Quelle bereitgestellt bzw. am Verbraucher abgegeben wird.</p>
+        <span class="formula">[U] = 1&#8239;Volt = 1&#8239;V</span>
+        <ul>
+            <li><strong>Spannungsmesser</strong> werden <strong>parallel</strong> zum Bauteil geschaltet.</li>
+            <li>In der <strong>Reihenschaltung</strong>: <em>U₁ : U₂ = R₁ : R₂</em> und <em>U₀ = U₁ + U₂</em>.</li>
+            <li>In der <strong>Parallelschaltung</strong> ist die Spannung an allen Zweigen gleich.</li>
+        </ul>
+
+        <h3>1.4&ensp;Elektrischer Widerstand R</h3>
+        <p>Der Widerstand begrenzt die Stromstärke. Für ein ohmsches Bauteil gilt das <strong>Ohm'sche Gesetz</strong>:</p>
+        <span class="formula">I = U / R &emsp; bzw. &emsp; U = R · I &emsp; [R] = 1&#8239;Ohm = 1&#8239;Ω</span>
+        <ul>
+            <li><strong>Reihenschaltung</strong> vergrößert den Gesamtwiderstand: <em>R<sub>ges</sub> = R₁ + R₂ + …</em></li>
+            <li><strong>Parallelschaltung</strong> verringert ihn: <em>1/R<sub>ges</sub> = 1/R₁ + 1/R₂ + …</em></li>
+        </ul>
+
+        <h3>1.5&ensp;Reihen- und Parallelschaltung im Vergleich</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Merkmal</th>
+                        <th>Reihenschaltung</th>
+                        <th>Parallelschaltung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Stromstärke</td>
+                        <td>Überall gleich <em>I = konst.</em></td>
+                        <td><em>I<sub>ges</sub> = I₁ + I₂ + …</em></td>
+                    </tr>
+                    <tr>
+                        <td>Spannung</td>
+                        <td><em>U₀ = U₁ + U₂ + …</em>; <em>U₁:U₂ = R₁:R₂</em></td>
+                        <td>An jedem Zweig gleich <em>U₀ = U₁ = U₂ = …</em></td>
+                    </tr>
+                    <tr>
+                        <td>Widerstand</td>
+                        <td><em>R<sub>ges</sub> = R₁ + R₂ + …</em> (wird größer)</td>
+                        <td><em>1/R<sub>ges</sub> = 1/R₁ + 1/R₂ + …</em> (wird kleiner)</td>
+                    </tr>
+                    <tr>
+                        <td>Strom-Spannungs-Verhältnis</td>
+                        <td><em>I</em> gleich, <em>U</em> proportional zu <em>R</em></td>
+                        <td><em>U</em> gleich, <em>I</em> umgekehrt proportional zu <em>R</em>: <em>I₁:I₂ = R₂:R₁</em></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <!-- ===== 2 ===== -->
+        <h2>2&ensp;Modelle für den Stromkreis</h2>
+
+        <h3>2.1&ensp;Förderbandmodell</h3>
+        <p>Die <strong>Batterie</strong> wirkt wie ein Förderband, das negative Ladungen immer wieder vom Pluspol wegbewegt (Ladungstrennung). Die Ladungen (z. B. „Kugeln“) laufen im Kreis um – ihre <strong>Anzahl bleibt unverändert</strong>. Der <strong>Widerstand</strong> wird durch ein Drehkreuz oder eine Verengung symbolisiert. Das Modell erklärt: Die Stromstärke ist überall gleich, die Ladungen werden nicht verbraucht.</p>
+
+        <h3>2.2&ensp;Höhenmodell (Potenzialmodell)</h3>
+        <p>Elektrische Spannung wird als <strong>Höhenunterschied</strong> veranschaulicht. Jedem Punkt im Stromkreis wird ein <strong>elektrisches Potenzial</strong> <em>φ</em> („elektrische Höhenlage“) zugeordnet.</p>
+        <span class="formula">U<sub>AB</sub> = φ<sub>B</sub> − φ<sub>A</sub> &emsp; (Spannung = Potenzialdifferenz)</span>
+        <p>Üblicherweise wird der <strong>Minuspol</strong> einer Quelle auf <em>φ = 0&#8239;V</em> gesetzt (Masse/Erde). Im Höhenmodell entspricht die <strong>Reihenschaltung</strong> einer „Treppe“: Die Spannungen an den Widerständen addieren sich zur Gesamthöhe. Die <strong>Parallelschaltung</strong> entspricht mehreren Wegen auf gleicher Höhe – alle Zweige haben dasselbe Spannungsniveau.</p>
+
+        <hr>
+
+        <!-- ===== 3 ===== -->
+        <h2>3&ensp;Elektrische Leistung und Energiefluss</h2>
+
+        <h3>3.1&ensp;Zusammenhang zwischen Energie und Ladung</h3>
+        <p>Bewegt sich eine Ladungsmenge <em>ΔQ</em> durch eine Spannung <em>U</em>, wird die elektrische Energie <em>ΔE</em> umgesetzt:</p>
+        <span class="formula">ΔE = ΔQ · U &emsp; [ΔE] = 1&#8239;Joule = 1&#8239;J = 1&#8239;C·V</span>
+
+        <h3>3.2&ensp;Elektrische Leistung P</h3>
+        <p>Die Leistung ist die pro Zeit umgesetzte Energie:</p>
+        <span class="formula">P = ΔE / Δt = (ΔQ · U) / Δt = U · ΔQ/Δt = U · I &emsp; [P] = 1&#8239;Watt = 1&#8239;W</span>
+        <p>Diese Formel gilt immer – sowohl für die von der Quelle abgegebene als auch für die an einem Gerät umgesetzte Leistung.</p>
+
+        <h3>3.3&ensp;Energie- und Ladungsfluss – der entscheidende Unterschied</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Konzept</th>
+                        <th>Verhalten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ladung <em>Q</em></td>
+                        <td>Bleibt erhalten, zirkuliert im Kreis</td>
+                    </tr>
+                    <tr>
+                        <td>Energie <em>ΔE</em></td>
+                        <td>Wird von der Quelle zu den Verbrauchern transportiert und dort umgewandelt (verlässt den Stromkreis)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <!-- ===== 4 ===== -->
+        <h2>4&ensp;Wirkungsgrad</h2>
+        <p>Jedes reale Gerät wandelt nur einen Teil der aufgenommenen Leistung in die gewünschte Nutzleistung um. Der Rest wird meist als thermische Energie abgegeben.</p>
+        <span class="formula">η = P<sub>nutz</sub> / P<sub>auf</sub> = ΔE<sub>nutz</sub> / ΔE<sub>auf</sub></span>
+        <p><em>η</em> hat keine Einheit, wird oft in Prozent angegeben und ist stets ≤ 1 (100 %).</p>
+
+        <div class="info-box">
+            <p><strong>Beispiel Akkuschrauber (Buch S. 57):</strong></p>
+            <p>Elektrisch: <em>U = 2,0&#8239;V, I = 1,3&#8239;A → P<sub>auf</sub> = 2,6&#8239;W</em><br>
+                Mechanisch (Hub): <em>m = 0,50&#8239;kg, h = 1,5&#8239;m, t = 4,4&#8239;s → P<sub>nutz</sub> ≈ 1,7&#8239;W</em><br>
+            <em>η = 1,7 / 2,6 ≈ 0,64 ≙ 64 %</em>. Die restlichen 36 % werden in Wärme umgewandelt.</p>
+        </div>
+
+        <hr>
+
+        <!-- ===== 5 ===== -->
+        <h2>5&ensp;Licht als Photonenstrom – das Photonenmodell</h2>
+
+        <h3>5.1&ensp;Grenzen des Strahlenmodells</h3>
+        <p>Mit dem geometrischen Strahlenmodell lassen sich zwar Schatten und Brechung erklären, aber nicht, warum eine Leuchtfolie nur von blauem/violettem und UV-Licht zum Nachleuchten angeregt wird.</p>
+
+        <h3>5.2&ensp;Das Photonenmodell</h3>
+        <ul>
+            <li>Licht ist ein Strom von <strong>Photonen</strong> (Energiepakete).</li>
+            <li>Photonen haben <strong>keine Masse</strong>, sind <strong>unteilbare Energieportionen</strong>.</li>
+            <li>Sie bewegen sich im Vakuum mit <strong>c = 3,00 · 10⁸&#8239;m/s</strong>.</li>
+            <li>Sie werden nur <strong>als Ganzes</strong> von Atomen absorbiert oder emittiert.</li>
+            <li>Die <strong>Energie eines Photons</strong> hängt mit der <strong>Farbe</strong> zusammen; sie nimmt von rot nach violett stetig zu.</li>
+        </ul>
+        <span class="formula">1&#8239;Elektronenvolt = 1&#8239;eV = 1,602 · 10<sup>−19</sup>&#8239;J</span>
+
+        <h3>5.3&ensp;Die drei Bereiche des optischen Spektrums</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bereich</th>
+                        <th>Photonenenergie E<sub>ph</sub></th>
+                        <th>Farbe / Eigenschaft</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Infrarot (IR)</strong></td>
+                        <td>&lt; 1,6&#8239;eV</td>
+                        <td>Wärmestrahlung, unsichtbar</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sichtbar (VIS)</strong></td>
+                        <td>1,6&#8239;eV … 3,3&#8239;eV</td>
+                        <td>Rot (≈1,6&#8239;eV) … Violett (≈3,3&#8239;eV)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ultraviolett (UV)</strong></td>
+                        <td>&gt; 3,3&#8239;eV</td>
+                        <td>Energiereich, unsichtbar, fotochemisch aktiv</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>5.4&ensp;Umrechnung Energie – Wellenlänge</h3>
+        <span class="formula">E<sub>ph</sub> ≈ 1240&#8239;eV·nm / λ &emsp; bzw. &emsp; λ ≈ 1240&#8239;eV·nm / E<sub>ph</sub></span>
+        <p><em>Beispiel:</em> Eine orangene Spektrallinie mit λ = 620&#8239;nm entspricht etwa E<sub>ph</sub> = 2,0&#8239;eV.</p>
+
+        <hr>
+
+        <!-- ===== 6 ===== -->
+        <h2>6&ensp;Spektren</h2>
+
+        <h3>6.1&ensp;Kontinuierliches Spektrum</h3>
+        <p>Wird weißes Licht (z. B. Sonnenlicht, Glühlampe) durch ein Prisma oder Gitter geschickt, entsteht ein <strong>durchgehendes Farbband</strong> von Rot bis Violett. Jede Farbe entspricht einer <strong>Spektralfarbe</strong>; diese ist nicht weiter zerlegbar.</p>
+
+        <h3>6.2&ensp;Emissionsspektren (Linienspektren)</h3>
+        <p>Erhitzt man einzelne Elemente (z. B. Natrium, Kalium) in einer Flamme, senden sie Licht aus, das im Spektroskop aus <strong>einzelnen, scharfen farbigen Linien</strong> besteht. Jedes Element besitzt ein <strong>charakteristisches Linienspektrum</strong> – eine Art „Fingerabdruck“.</p>
+        <ul>
+            <li><strong>Natrium:</strong> gelb-orange (Doppellinie bei ≈ 2,1&#8239;eV)</li>
+            <li><strong>Kalium:</strong> Linien im violetten und roten Bereich</li>
+            <li><strong>Calcium:</strong> ziegelrot</li>
+        </ul>
+
+        <h3>6.3&ensp;Absorptionsspektren</h3>
+        <p>Schickt man weißes Licht durch ein kaltes Gas, <strong>fehlen</strong> anschließend im kontinuierlichen Spektrum genau die Farben, die das Gas im Emissionsspektrum zeigen würde. Man erhält <strong>dunkle Linien</strong> auf buntem Hintergrund. Grund: Die Atome absorbieren Photonen passender Energie; die anschließende spontane Wiederabstrahlung erfolgt in <strong>alle Richtungen</strong>, sodass in Vorwärtsrichtung weniger Licht ankommt.</p>
+
+        <h3>6.4&ensp;Emissions- vs. Absorptionsspektrum</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Emissionsspektrum</th>
+                        <th>Absorptionsspektrum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Farbige Linien auf dunklem Grund</td>
+                        <td>Schwarze Linien auf buntem Grund</td>
+                    </tr>
+                    <tr>
+                        <td>Atom geht von höherem in tieferen Zustand über</td>
+                        <td>Atom geht von tieferem in höheren Zustand über</td>
+                    </tr>
+                    <tr>
+                        <td>Photon wird <strong>ausgesendet</strong></td>
+                        <td>Photon wird <strong>aufgenommen</strong> (absorbiert)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Linien liegen exakt bei den gleichen Energiewerten wie im Absorptionsspektrum desselben Elements</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <!-- ===== 7 ===== -->
+        <h2>7&ensp;Das Energiestufenmodell der Atomhülle</h2>
+
+        <h3>7.1&ensp;Grundidee</h3>
+        <p>Die Hülle eines Atoms kann <strong>nur bestimmte, diskrete Energiezustände</strong> annehmen. Der Zustand mit der niedrigsten Energie heißt <strong>Grundzustand</strong> (meist E₁ = 0&#8239;eV). Höhere Zustände sind <strong>angeregte Zustände</strong> (E₂, E₃, …).</p>
+
+        <h3>7.2&ensp;Absorption und Emission</h3>
+        <p>Ein Photon kann <strong>nur dann absorbiert</strong> werden, wenn seine Energie genau der Differenz zweier erlaubter Energiestufen entspricht:</p>
+        <span class="formula">E<sub>ph</sub> = E<sub>oben</sub> − E<sub>unten</sub></span>
+        <p>Fällt ein Atom von einem angeregten Zustand in einen tieferen zurück, sendet es ein Photon <strong>mit genau dieser Differenzenergie</strong> aus. Jede <strong>Spektrallinie</strong> entspricht einem möglichen Übergang zwischen zwei Stufen.</p>
+
+        <div class="info-box">
+            <p><strong>Beispiel aus dem Buch (fiktives Atom, S. 75):</strong></p>
+            <p>E₁ = 2,40&#8239;eV, E₂ = 4,36&#8239;eV. Eine violette Linie mit E<sub>ph</sub> = 3,27&#8239;eV entsteht beim Übergang E₃ → E₁.<br>
+                → E₃ = 3,27&#8239;eV + 2,40&#8239;eV = 5,67&#8239;eV<br>
+            → Übergang E₃ → E₂ liefert ein Photon der Energie 1,31&#8239;eV (IR-Bereich).</p>
+        </div>
+
+        <hr>
+
+        <!-- ===== 8 ===== -->
+        <h2>8&ensp;Sonnenlicht, Fraunhoferlinien und die Erdatmosphäre</h2>
+
+        <h3>8.1&ensp;Fraunhoferlinien</h3>
+        <p>Das Spektrum der Sonne zeigt <strong>hunderte dunkle Linien</strong> – die <strong>Fraunhoferlinien</strong>. Sie entstehen durch Absorption des kontinuierlichen Sonnenlichts in den kühleren äußeren Schichten der Sonne und in der Erdatmosphäre. Joseph von Fraunhofer (1814) vermaß und benannte sie systematisch; die Buchstaben (A, B, C, D, …) werden noch heute verwendet.</p>
+
+        <h3>8.2&ensp;Einfluss der Erdatmosphäre</h3>
+        <p>Satellitenmessungen zeigen das Sonnenspektrum <strong>oberhalb der Atmosphäre</strong> als nahezu glatte, kontinuierliche Kurve (wie ein schwarzer Strahler bei ~5800&#8239;K). Am Erdboden ist die Intensität in vielen Bereichen abgesenkt – verursacht durch die <strong>Absorption von Gasen</strong>:</p>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gas</th>
+                        <th>Hauptsächlich absorbierter Bereich</th>
+                        <th>Wirkung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ozon (O₃)</td>
+                        <td>UV-Bereich, v. a. 3,3 … 5&#8239;eV</td>
+                        <td>Schutz vor energiereicher UV-Strahlung</td>
+                    </tr>
+                    <tr>
+                        <td>Sauerstoff (O₂)</td>
+                        <td>UV und Teile des sichtbaren Spektrums</td>
+                        <td>Absorption von Photonen bestimmter Energien</td>
+                    </tr>
+                    <tr>
+                        <td>Wasserdampf (H₂O)</td>
+                        <td>IR-Bereich (z. B. um 0,8&#8239;eV)</td>
+                        <td>Treibhauseffekt, Wärmespeicherung</td>
+                    </tr>
+                    <tr>
+                        <td>Kohlendioxid (CO₂)</td>
+                        <td>IR-Bereich (um 0,3&#8239;eV und 0,6&#8239;eV)</td>
+                        <td>Starker Einfluss auf das Klima</td>
+                    </tr>
+                    <tr>
+                        <td>Methan (CH₄)</td>
+                        <td>IR-Bereich</td>
+                        <td>Zusätzliches Treibhausgas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Insbesondere wird die gefährliche UV-Strahlung durch die <strong>Ozonschicht</strong> stark reduziert; das Ozonloch (Rückgang der Ozonkonzentration, v. a. durch FCKW) erhöht die UV-Belastung an der Erdoberfläche mit Risiken wie Hautkrebs.</p>
+
+        <hr>
+
+        <!-- ===== 9 ===== -->
+        <h2>9&ensp;Risiken optischer Strahlung bewerten</h2>
+        <p>Die Gefährdung hängt ab von <strong>(1) Leistung / Intensität</strong> (Energie pro Zeit und Fläche) und <strong>(2) Spektralbereich</strong> (Photonenenergie bestimmt die Wirkung).</p>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Spektralbereich</th>
+                        <th>Gefahren für das Auge</th>
+                        <th>Gefahren für die Haut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>UV</strong> (3,3–20&#8239;eV)</td>
+                        <td>Fotochemische Netzhautschädigung, „Schneeblindheit“</td>
+                        <td>Sonnenbrand, Hautkrebs (Melanom), frühzeitige Hautalterung</td>
+                    </tr>
+                    <tr>
+                        <td><strong>VIS</strong> (1,6–3,3&#8239;eV)</td>
+                        <td>Thermische Netzhautschädigung (v. a. Laser), Blendung</td>
+                        <td>Keine direkte Schädigung, aber Konzentration durch Brennglaseffekt möglich</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IR</strong> (&lt;1,6&#8239;eV)</td>
+                        <td>Grauer Star (Linsentrübung), thermische Verbrennung der Netzhaut</td>
+                        <td>Verbrennungen, Hitzegefühl (Wärmestrahlung dringt tief ein)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Schutzmaßnahmen</h3>
+        <ul>
+            <li><strong>UV:</strong> Sonnenbrille mit UV-Schutz, Sonnencreme, Solariumbenutzung für Minderjährige verboten.</li>
+            <li><strong>VIS:</strong> Niemals in Laserstrahlen schauen (Laserklasse 2: schon 0,25&#8239;s können Schäden verursachen).</li>
+            <li><strong>IR:</strong> Abstand zu starken IR-Quellen (z. B. Rotlichtlampen), Schutzbrille beim Schweißen.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ===== 10 ===== -->
+        <h2>10&ensp;Zusammenfassende Tabellen</h2>
+
+        <h3>10.1&ensp;Wichtige physikalische Größen und Einheiten</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Größe</th>
+                        <th>Zeichen</th>
+                        <th>Einheit</th>
+                        <th>Beziehung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ladung</td>
+                        <td>Q</td>
+                        <td>Coulomb (C)</td>
+                        <td>Q = N · e</td>
+                    </tr>
+                    <tr>
+                        <td>Elementarladung</td>
+                        <td>e</td>
+                        <td>1,6022·10⁻¹⁹ C</td>
+                        <td>–</td>
+                    </tr>
+                    <tr>
+                        <td>Stromstärke</td>
+                        <td>I</td>
+                        <td>Ampere (A) = C/s</td>
+                        <td>I = ΔQ / Δt</td>
+                    </tr>
+                    <tr>
+                        <td>Spannung</td>
+                        <td>U</td>
+                        <td>Volt (V) = J/C</td>
+                        <td>U = ΔE / ΔQ</td>
+                    </tr>
+                    <tr>
+                        <td>Widerstand</td>
+                        <td>R</td>
+                        <td>Ohm (Ω)</td>
+                        <td>R = U / I</td>
+                    </tr>
+                    <tr>
+                        <td>Elektrische Energie</td>
+                        <td>ΔE</td>
+                        <td>Joule (J)</td>
+                        <td>ΔE = ΔQ · U</td>
+                    </tr>
+                    <tr>
+                        <td>Leistung</td>
+                        <td>P</td>
+                        <td>Watt (W) = J/s</td>
+                        <td>P = U · I</td>
+                    </tr>
+                    <tr>
+                        <td>Wirkungsgrad</td>
+                        <td>η</td>
+                        <td>– (oft %)</td>
+                        <td>η = P<sub>nutz</sub> / P<sub>auf</sub></td>
+                    </tr>
+                    <tr>
+                        <td>Photonenenergie</td>
+                        <td>E<sub>ph</sub></td>
+                        <td>Elektronenvolt (eV)</td>
+                        <td>E<sub>ph</sub> ≈ 1240 eV·nm / λ</td>
+                    </tr>
+                    <tr>
+                        <td>Lichtgeschwindigkeit</td>
+                        <td>c</td>
+                        <td>3,00·10⁸ m/s</td>
+                        <td>–</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>10.2&ensp;Spektren im Überblick</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Spektraltyp</th>
+                        <th>Erscheinung</th>
+                        <th>Entstehung</th>
+                        <th>Aussagegehalt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kontinuierlich</td>
+                        <td>Alle Farben lückenlos</td>
+                        <td>Glühender fester/flüssiger Körper, heißes Gas unter hohem Druck</td>
+                        <td>Temperatur der Quelle (nicht chemische Zusammensetzung)</td>
+                    </tr>
+                    <tr>
+                        <td>Emissions-Linien</td>
+                        <td>Farbige Linien auf dunklem Grund</td>
+                        <td>Angeregte Atome senden Photonen aus</td>
+                        <td>Chemische Elemente identifizierbar („Fingerabdruck“)</td>
+                    </tr>
+                    <tr>
+                        <td>Absorptions-Linien</td>
+                        <td>Dunkle Linien auf buntem Grund</td>
+                        <td>Weißes Licht wird von Gas selektiv absorbiert</td>
+                        <td>Elementezusammensetzung des absorbierenden Gases</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <!-- ===== Abschluss ===== -->
+        <h2>Abschließende Verknüpfung</h2>
+        <p>Beide Lehrbuchkapitel demonstrieren, wie <strong>Energie</strong> in unterschiedlichen Systemen umgesetzt und quantisiert sein kann: In <strong>Stromkreisen</strong> wird elektrische Energie kontinuierlich transportiert, ihre Menge ist proportional zur Spannung und zur transportierten Ladung. In der <strong>Atomphysik</strong> zeigt sich, dass Lichtenergie in <strong>diskreten Paketen</strong> (Photonen) übertragen wird. Nur bestimmte Energiebeträge (E = E<sub>y</sub> − E<sub>x</sub>) sind erlaubt – dies ist die Grenze zwischen der klassischen Elektrodynamik und der Quantenphysik.</p>
+        <p>Dieses Wissen bildet die Basis, um sowohl alltägliche Elektrogeräte zu verstehen als auch die Natur des Lichts und die Spektroskopie als Analysewerkzeug zu begreifen – vom Nachweis von Arsen in der Krimi-Suppe bis zur Entdeckung der Ozonschicht.</p>
+
+    </div>
+
+    <!-- ─── Script: Dark/Light Toggle ─────────── -->
+    <script>
+        (function() {
+            const toggleBtn = document.getElementById('themeToggle');
+            const toggleIcon = document.getElementById('toggleIcon');
+            const toggleLabel = document.getElementById('toggleLabel');
+            const html = document.documentElement;
+
+            // Check for saved preference or system preference
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initialDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+            function setTheme(dark) {
+                if (dark) {
+                    html.setAttribute('data-theme', 'dark');
+                    toggleIcon.textContent = '🌙';
+                    toggleLabel.textContent = 'Dark';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggleIcon.textContent = '☀️';
+                    toggleLabel.textContent = 'Light';
+                }
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+            }
+
+            // Initialize
+            setTheme(initialDark);
+
+            // Toggle on click
+            toggleBtn.addEventListener('click', () => {
+                const isDark = html.hasAttribute('data-theme');
+                setTheme(!isDark);
+            });
+
+            // Listen for system changes if no manual preference is set
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    setTheme(e.matches);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
